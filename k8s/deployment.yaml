@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket-app
+  namespace: default
+  labels:
+    app: ticket-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticket-service
+  template:
+    metadata:
+      labels:
+        app: ticket-service
+    spec:
+      containers:
+      - name: ticket-app
+        image: sevvaloruc24/ticket-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
