@@ -2,17 +2,14 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: ticket-servicemonitor
-  namespace: monitoring
+  namespace: default
   labels:
     release: monitoring
 spec:
-  namespaceSelector:
-    matchNames:
-    - default
   selector:
     matchLabels:
       app: ticket-service
   endpoints:
-  - port: http
-    path: /metrics
-    interval: 15s
+    - port: http
+      path: /metrics
+      interval: 15s
